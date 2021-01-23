@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>File Upload / Download</title>
+    </head>
+    <body>
+
+       
+        
+        <video>
+            <source th:src="@{'/uploads/' + ${claseenvivo.url}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <br>
+
+        <div>
+            <h3>Upload Multiple Files</h3>
+            <form method="post" th:action="@{/index}" encType="multipart/form-data">
+                <input type="file" name="file" required />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+
+
+    </body>
+</html>
