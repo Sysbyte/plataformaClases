@@ -1,5 +1,6 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,14 @@
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <!-- Our Custom CSS -->
-        <link th:href="@{../style.css}" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="style.css">
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
-    <body>  
 
-
+    <body>
         <div class="wrapper">
             <!-- Sidebar  -->
             <nav id="sidebar">
@@ -111,49 +111,99 @@
                 </nav>
 
                 <form action="action" method="post" th:action="@{/form}" encType="multipart/form-data" class="text-center"
-                      th:object="${claseenvivo}">
-                    <div class="mb-3">
+                      th:object="${clase}">
+                    <div class="container">
+                        <div id="vistaPrevia">
+                            <label for="formFileLg" class="form-label" style="font-size: 22px;">Vista Previa</label>
+                            <div class="embed-responsive embed-responsive-21by9 text-center">
+                                <video controls id="video-tag">
+                                    <source id="video-source" src="splashVideo">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <br id="espaciadoVistaPrevia">
                         <div>
                             <label for="formFileLg" class="form-label" style="font-size: 22px;">Subir Archivo</label>
-                            <input class="form-control form-control-lg" id="file" name="file" type="file">
+                            <input class="form-control form-control-lg" id="file" name="file" type="file"
+                                   >
                         </div>
                         <br>
-                        <input class="form-control form-control-lg" type="text" placeholder="Titulo" aria-label=".form-control-lg example" th:field="*{titulo}">
+                        <div>
+                            <label for="formFileLg" class="form-label" style="font-size: 22px;">Módulo</label>
+                            <select class="custom-select form-control form-control-lg" id="tipo_documento" th:field="*{modulo}" required>
+                                <option selected disabled value="">Seleccione...</option>
+                                <option th:each="modulo : ${modulos}" th:text="${modulo.nombre}" th:value="${modulo.id}"></option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <label for="formFileLg" class="form-label" style="font-size: 22px;">Titulo</label>
+                            <input class="form-control form-control-lg" type="text" placeholder="Titulo" aria-label=".form-control-lg example" th:field="*{titulo}">
+                        </div>
+                        <br>
+                        <div>
+                            <label for="formFileLg" class="form-label" style="font-size: 22px;">Duración</label>
+                            <input class="form-control form-control-lg" type="text" placeholder="Duración" aria-label=".form-control-lg example" th:field="*{duracion}"
+                                   id="duracion">
+                        </div> 
                         <br>
                         <button type="submit" class="btn btn-primary btn-lg">Subir</button>
                     </div>
                 </form>
 
+
+
+
+
             </div>
         </div>
 
-
-
-
-        <!-- Optional JavaScript; choose one of the two! -->
-
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-        <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-        -->
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
-
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar').toggleClass('active');
                 });
-
             });
 
-        </script>
+            var videoSrc = document.querySelector("#video-source");
+            var videoTag = document.querySelector("#video-tag");
+            var vistaPrevia = document.querySelector("#vistaPrevia");
+            var espaciadoVistaPrevia = document.querySelector("#espaciadoVistaPrevia");
+            var inputTag = document.querySelector("#file");
+            var duracion = document.querySelector("#duracion");
 
+            inputTag.addEventListener('change', readVideo)
+
+            function readVideo(event) {
+                console.log(event.target.files);
+                if (event.target.files && event.target.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        console.log('loaded');
+                        videoSrc.src = e.target.result;
+                        videoTag.load();     
+                    }.bind(this);
+
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+                
+                
+            }
+
+
+
+
+
+        </script>
     </body>
+
 </html>

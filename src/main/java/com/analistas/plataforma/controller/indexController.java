@@ -5,8 +5,7 @@
  */
 package com.analistas.plataforma.controller;
 
-import com.analistas.plataforma.model.ClaseEnVivo;
-import com.analistas.plataforma.repository.ClaseEnVivoRepository;
+import com.analistas.plataforma.model.Clase;
 import com.analistas.plataforma.service.IUploadFile_Service;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import com.analistas.plataforma.repository.ClaseRepository;
 
 /**
  *
@@ -34,7 +34,7 @@ public class indexController {
     private IUploadFile_Service upl;
 
     @Autowired
-    private ClaseEnVivoRepository claseEnVivoRepo;
+    private ClaseRepository claseEnVivoRepo;
 
     @GetMapping({"/", "/index"})
     public String index(Map m) {
